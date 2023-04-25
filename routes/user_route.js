@@ -1,19 +1,14 @@
+const { 
+    getSingleUser, 
+    deleteUser, 
+    updateUserInfo 
+} = require("../controllers/user_ctrler");
 const router = require("express").Router();
 
-router.put('/:id', (req, res)=>{
-    res.send("Update user info");
-})
+router.get('/:id', getSingleUser)
 
-router.delete('/:id', (req, res)=>{
-    res.send("Delete user info");
-})
+router.delete('/:id', deleteUser)
 
-router.get('/:id', (req, res)=>{
-    res.send("Get user with id")
-})
-
-router.get('/', (req, res)=>{
-    res.send("Get all users")
-})
+router.put('/:id', updateUserInfo) 
 
 module.exports=router;
