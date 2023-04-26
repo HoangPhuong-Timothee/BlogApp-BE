@@ -1,11 +1,11 @@
 const { 
-    getSingleUser, 
+    getUserInfo, 
     deleteUser, 
     updateUserInfo 
 } = require("../controllers/user_ctrler");
 const router = require("express").Router();
 
-router.get('/:id', getSingleUser)
+router.get('/:id', getUserInfo)
 
 router.delete('/:id', deleteUser)
 

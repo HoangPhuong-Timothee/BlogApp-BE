@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const postSChema = new mongoose.Schema({
     username:{
         type: String,
-        unique: true,
         require: true
     },
     title:{
@@ -11,7 +10,8 @@ const postSChema = new mongoose.Schema({
         require: true
     },
     des:{
-        type: String
+        type: String,
+        require: false
     },
     postPic:{
         type: String,

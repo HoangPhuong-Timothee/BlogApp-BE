@@ -8,7 +8,7 @@ require ("dotenv").config();
 const userRoute = require('./routes/user_route');
 const postRoute = require('./routes/post_route');
 const categoryRoute = require('./routes/category_route');
-const authRoute = require('./routes/auth_route')
+const authRoute = require('./routes/auth_route');
 
 //DB connection
 dbConnection();
@@ -17,7 +17,6 @@ dbConnection();
 app.use(bodyParser.json({ limit: "30mb" }));
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true, limit: "30mb" }));
-app.use(express());
 
 //routes
 app.get('/', (req, res)=>{
