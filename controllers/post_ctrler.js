@@ -1,4 +1,3 @@
-const express = require('express');
 const Post = require('../models/post_model');
 
 const getAllPosts = async (req, res)=>{
@@ -6,13 +5,20 @@ const getAllPosts = async (req, res)=>{
     const category = await req.query.cate;
     try{
         let posts;
-        if(username){
-            posts = await Post.find({ username });
-        }else if(category){
-            posts = await Post.find({ categories: { $in: [category] } });
-        }else{
-            posts = await Post.find();
+        switch(postType){
+            case username: posts = await Post.find({ username })
+            break;
+            case category: posts = await Post.find({ categories: { $in: [category] } })
+            break;
+            default: posts = await Post.find()
         }
+        // if(username){
+        //     posts = await Post.find({ username });
+        // }else if(category){
+        //     posts = await Post.find({ categories: { $in: [category] } });
+        // }else{
+        //     posts = await Post.find();
+        // }
         res.status(200).json(posts);    
     }catch(err){
         res.status(500).json({ message: err.message })
@@ -20,16 +26,12 @@ const getAllPosts = async (req, res)=>{
 }
 
 const getSinglePost = async (req, res)=>{
-    if(req.body.postId === req.params.id){
-        try{
-            const singlePost = await Post.findById(req.params.id);
-            res.status(200).json(singlePost);
-        }catch(err){
-            res.status(500).json({ message: err.message })
+    try{
+        const singlePost = await Post.findById(req.params.id);
+        res.status(200).json(singlePost);
+    }catch(err){
+        res.status(500).json({ message: err.message })
         }
-    }else{
-        res.status(404).json("Post not found!!!")
-    }
 }
 
 

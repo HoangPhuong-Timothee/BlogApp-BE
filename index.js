@@ -5,10 +5,6 @@ const dbConnection = require("./config/dbConnection");
 const app = express();
 const PORT = process.env.PORT || 5000;
 require ("dotenv").config();
-const userRoute = require('./routes/user_route');
-const postRoute = require('./routes/post_route');
-const categoryRoute = require('./routes/category_route');
-const authRoute = require('./routes/auth_route');
 const multer = require('multer');
 
 //DB connection
@@ -31,10 +27,10 @@ const upload = multer({ storage: storage });
 app.use('/api/upload', upload.single("file"), (req, res)=>{
     res.status(200).json("File has been uploaded!!!");
 });
-app.use('/api/auth', authRoute);
-app.use('/api/user', userRoute);
-app.use('/api/post', postRoute);
-app.use('/api/category', categoryRoute);
+app.use('/api/auth', require('./routes/auth_route'));
+app.use('/api/user', require('./routes/user_route'));
+app.use('/api/post', require('./routes/post_route'));
+app.use('/api/category', require('./routes/category_route'));
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on port: http://localhost:${PORT}`);

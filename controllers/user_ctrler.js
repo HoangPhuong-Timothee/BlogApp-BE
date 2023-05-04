@@ -1,4 +1,3 @@
-const express = require("express");
 const User = require('../models/user_model');
 const bcrypt = require("bcrypt");
 const Post = require("../models/post_model");
