@@ -3,15 +3,15 @@ const mongoose = require("mongoose");
 const postSChema = new mongoose.Schema({
     username:{
         type: String,
-        require: true
+        required: true
     },
     title:{
         type: String,
-        require: true
+        required: true
     },
     des:{
         type: String,
-        require: false
+        required: false
     },
     postPic:{
         type: String,
@@ -19,7 +19,7 @@ const postSChema = new mongoose.Schema({
     },
     categories:{
         type: Array,
-        require: false
+        required: false
     }
 }, { timestamps: true }
 )

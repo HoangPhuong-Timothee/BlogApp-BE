@@ -5,20 +5,20 @@ const getAllPosts = async (req, res)=>{
     const category = await req.query.cate;
     try{
         let posts;
-        switch(postType){
-            case username: posts = await Post.find({ username })
-            break;
-            case category: posts = await Post.find({ categories: { $in: [category] } })
-            break;
-            default: posts = await Post.find()
-        }
-        // if(username){
-        //     posts = await Post.find({ username });
-        // }else if(category){
-        //     posts = await Post.find({ categories: { $in: [category] } });
-        // }else{
-        //     posts = await Post.find();
+        // switch(postType){
+        //     case username: posts = await Post.find({ username })
+        //     break;
+        //     case category: posts = await Post.find({ categories: { $in: [category] } })
+        //     break;
+        //     default: posts = await Post.find()
         // }
+        if(username){
+            posts = await Post.find({ username });
+        }else if(category){
+            posts = await Post.find({ categories: { $in: [category] } });
+        }else{
+            posts = await Post.find();
+        }
         res.status(200).json(posts);    
     }catch(err){
         res.status(500).json({ message: err.message })
